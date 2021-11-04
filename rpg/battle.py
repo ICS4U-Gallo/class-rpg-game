@@ -1,7 +1,7 @@
 import random
 from typing import List
 
-from character import Character
+from .character import Character
 
 
 class Battle:

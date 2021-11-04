@@ -1,5 +1,5 @@
-from main import Battle
-from character import Character
+from rpg.battle import Battle
+from rpg.character import Character
 
 
 def test_battle_class():
