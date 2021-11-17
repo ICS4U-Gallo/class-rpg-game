@@ -1,0 +1,33 @@
+class Item:
+    def __init__(self, name: str, level: int, ability: str):
+        self.name = name
+        self.level = level
+        self.ability = ability
+
+    def get_cost(self):
+        cost = self.level * 50
+        return cost
+
+
+class Consumable(Item):
+    def get_uses(self, inventory_list):
+        uses = 0
+        for item in inventory_list:
+            if item.name == self.name and item.level == self.level:
+                uses += 1
+        return uses
+
+
+class Equipable(Item):
+    pass
+
+
+
+class Weapon(Equipable):
+    def get_damage(self) -> int:
+        return self.level * 5
+
+
+class Armor(Equipable):
+    def get_damage_reduction(self) -> int:
+        return self.level * 4
