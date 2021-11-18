@@ -10,12 +10,7 @@ class Item:
 
 
 class Consumable(Item):
-    def get_uses(self, inventory_list):
-        uses = 0
-        for item in inventory_list:
-            if item.name == self.name and item.level == self.level:
-                uses += 1
-        return uses
+    pass
 
 
 class Equipable(Item):
