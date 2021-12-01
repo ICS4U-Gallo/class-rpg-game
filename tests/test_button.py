@@ -7,10 +7,11 @@ def test_button_class():
     SIZE = (800, 600)
     screen = pygame.display.set_mode(SIZE)
 
-    button = Button(100, 100, 100, 60,
+    button = Button(100, 100,
                     (0xff, 0x80, 0x00),
                     (0xff, 0xff, 0x00),
-                    (0x00, 0xff, 0x00))
+                    (0x00, 0xff, 0x00),
+                    width=100, height=60)
     assert type(button.image_default) == pygame.Surface
     assert type(button.image_hover) == pygame.Surface
     assert type(button.image_click) == pygame.Surface

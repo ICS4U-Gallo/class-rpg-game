@@ -27,23 +27,17 @@ def load_surface(surface_ref: Union[str, pygame.Surface, Tuple[int, int, int]]) 
 
 
 class Button:
-    pos_x: float
-    pos_y: float
-    width: float
-    height: float
-    image_default: pygame.Surface
-    image_click: pygame.Surface
-    _image: pygame.Surface
-    onclicks: List[Callable]
 
-    def __init__(self, x: float, y: float, w: float, h: float,
-                 image_default=None,
+    def __init__(self, x: float, y: float,
+                 image_default: Union[str, pygame.Surface, Tuple[int, int, int]],
                  image_hover=None,
-                 image_click=None):
+                 image_click=None,
+                 width: float = None,
+                 height: float = None):
         self.pos_x = x
         self.pos_y = y
-        self.width = w
-        self.height = h
+        self.width = width
+        self.height = height
         self.onclicks = []
 
         if image_hover == None:
@@ -54,6 +48,13 @@ class Button:
         self.image_hover = load_surface(image_hover)
         self.image_click = load_surface(image_click)
         self._image = self.image_default
+
+        if self.width == None or self.height == None:
+            if self._image != None:
+                self.width = self._image.get_width()
+                self.height = self._image.get_height()
+            else:
+                self.width = self.height = 1
 
     def draw(self, surface: pygame.Surface) -> bool:
         """Draw the button on screen
@@ -81,9 +82,7 @@ class Button:
         Returns:
             True if mouse is on the button, False otherwise
         """
-        if 0 <= mouse_x-self.pos_x < self.width and 0 <= mouse_y-self.pos_y < self.height:
-            return True
-        return False
+        return pygame.Rect(self.pos_x, self.pos_y, self.width, self.height).collidepoint(mouse_x, mouse_y)
 
     def mouse_move(self, mouse_x: float, mouse_y: float) -> None:
         """Call this when mouse moved"""
