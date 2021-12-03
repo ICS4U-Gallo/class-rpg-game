@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 import pygame
 
@@ -6,7 +6,9 @@ from .view import View
 
 
 class ShopScreen(View):
-    def __init__(self):
+    def __init__(self, parent: Optional[View] = None):
+        super().__init__(parent)
+        
         some_font = pygame.font.SysFont('Arial', 50)
 
         # in loop

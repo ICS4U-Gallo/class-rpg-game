@@ -1,10 +1,11 @@
-from typing import List
+from typing import List, Optional
 
 import pygame
 
 
 class View:
-    """A pseudo-interface for views that can be used in the game class."""
+    def __init__(self, parent: Optional['View'] = None):
+        self.parent = parent
 
     def event_loop(self, events: List[pygame.event.Event]) -> None:
         """View-specific event loop for key-bindings"""
